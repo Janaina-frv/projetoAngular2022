@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FuncionarioService } from '../funcionario.service';
+import { Funcionario } from '../funcionario/funcionario.model';
 
 @Component({
   selector: 'senac-listar-funcionario',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarFuncionarioComponent implements OnInit {
 
-  constructor() { }
+  funcionarios: Funcionario[];
+
+  constructor(private funcionarioService: FuncionarioService) { }
 
   ngOnInit(): void {
+    //this.funcionarios = this.listarTodos();
+    this.funcionarios = [
+      new Funcionario(1,"Fábio"),
+      new Funcionario(2,"Maria")
+    ]
+    
+  }
+
+  listarTodos(): Funcionario[]{
+    return this.funcionarioService.listarTodos();
   }
 
 }
